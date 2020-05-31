@@ -262,15 +262,19 @@ namespace DevexpressTreeListExample
                 treeList.ForceInitialize();
 
                 treeList.OptionsView.RootCheckBoxStyle = NodeCheckBoxStyle.Check;
+                //Tüm kategoriye checkbox ekliyor.
+                treeList.OptionsView.CheckBoxStyle = DefaultNodeCheckBoxStyle.Check;
+
+                #region Manuel Chechbox Created
 
                 //Nodes[1]
-                treeList.Nodes[1].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
+                // treeList.Nodes[1].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
 
                 //treeList.Nodes[1].Nodes[0]
-                treeList.Nodes[1].Nodes[0].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
+                // treeList.Nodes[1].Nodes[0].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
 
                 //treeList.Nodes[1].Nodes[1]
-                treeList.Nodes[1].Nodes[1].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
+                // treeList.Nodes[1].Nodes[1].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
 
                 //treeList.Nodes[1].Nodes[1].Nodes[0]
                 //treeList.Nodes[1].Nodes[1].Nodes[0].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
@@ -279,16 +283,18 @@ namespace DevexpressTreeListExample
                 //treeList.Nodes[1].Nodes[1].Nodes[1].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
 
                 //treeList.Nodes[2]
-                treeList.Nodes[2].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
+                //  treeList.Nodes[2].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
 
                 //treeList.Nodes[2].Nodes[0]
-                treeList.Nodes[2].Nodes[0].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
+                //  treeList.Nodes[2].Nodes[0].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
 
                 //treeList.Nodes[2].Nodes[1]
-                treeList.Nodes[2].Nodes[1].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
+                //  treeList.Nodes[2].Nodes[1].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
 
                 //treeList.Nodes[2].Nodes[2]
                 //treeList.Nodes[2].Nodes[2].ChildrenCheckBoxStyle = NodeCheckBoxStyle.Check;
+
+                #endregion Manuel Chechbox Created
 
                 treeList.ExpandAll();
             }
