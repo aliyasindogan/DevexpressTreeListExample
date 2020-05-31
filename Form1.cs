@@ -252,7 +252,7 @@ namespace DevexpressTreeListExample
                 treeList.OptionsBehavior.AllowRecursiveNodeChecking = true;
                 treeList.NodeCellStyle += OnNodeCellStyle;
                 treeList.BeforeFocusNode += OnBeforeFocusNode;
-                treeList.DataSource = db.Categories.Select(x => new ApplicationCategoryDto
+                treeList.DataSource = db.Categories.Select(x => new CategoryViewModel
                 {
                     Id = x.Id,
                     CategoryName = x.CategoryName,
@@ -317,7 +317,7 @@ namespace DevexpressTreeListExample
                                   join category in db.Categories on categoryUserTypes.CategoryID equals category.Id
                                   join userType in db.UserTypes on categoryUserTypes.UserTypeID equals userType.Id
                                   where categoryUserTypes.UserTypeID == id && categoryUserTypes.IsChecked == true
-                                  select new ApplicationCategoryDto
+                                  select new CategoryViewModel
                                   {
                                       Id = categoryUserTypes.CategoryID,
                                       CategoryName = category.CategoryName,
