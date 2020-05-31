@@ -2,9 +2,7 @@
 using DevExpress.XtraTreeList.Nodes;
 using DevexpressTreeListExample.Models;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,7 +11,6 @@ namespace DevexpressTreeListExample
 {
     public partial class Form1 : Form
     {
-        // private DatabaseContext db = new DatabaseContext();
         private int fontSizeDeltaControl = 0;
 
         public Form1()
@@ -46,6 +43,8 @@ namespace DevexpressTreeListExample
                     }
 
                     #endregion Önce Kulanıcı Tipi Silme işlemi
+
+                    #region Kaydetme İşlemi
 
                     using (DatabaseContext db = new DatabaseContext())
                     {
@@ -100,6 +99,8 @@ namespace DevexpressTreeListExample
                         }
                     }
 
+                    #endregion Kaydetme İşlemi
+
                     MessageBox.Show("Kategoriler Başarılı Bir Şekilde Eklendi !");
                 }
                 else
@@ -115,52 +116,9 @@ namespace DevexpressTreeListExample
             }
         }
 
-        private void btnListRefresh_Click(object sender, EventArgs e)
-        {
-            treeListFill();
-            lookUpEditUserType.EditValue = null;
-        }
-
-        private void lookUpEditUserType_EditValueChanged(object sender, EventArgs e)
-        {
-            treeList1Fill(Convert.ToInt32(lookUpEditUserType.EditValue));
-            int _id = Convert.ToInt32(lookUpEditUserType.EditValue);
-            using (DatabaseContext context = new DatabaseContext())
-            {
-                if (Convert.ToInt32(lookUpEditUserType.EditValue) > 0)
-                {
-                    string _userTypeName = context.UserTypes.FirstOrDefault(x => x.Id == _id).UserTypeName;
-                    groupControl3.Text = "Kayıtlı Kategori Listesi (Tree List)" + " / " + _userTypeName;
-                }
-                else
-                {
-                    groupControl3.Text = "Kayıtlı Kategori Listesi (Tree List)";
-                }
-            }
-        }
-
-        private void OnBeforeFocusNode(object sender, BeforeFocusNodeEventArgs e)
-        {
-            e.CanFocus = false;
-        }
-
-        private void OnNodeCellStyle(object sender, GetCustomNodeCellStyleEventArgs e)
-        {
-            if (e.Node.Level == 0)
-            {
-                if (fontSizeDeltaControl == 0)
-                {
-                    e.Appearance.FontSizeDelta += 1;
-                    fontSizeDeltaControl++;
-                }
-                e.Appearance.FontStyleDelta = FontStyle.Bold;
-            }
-            if (e.Node.Level == 1 && e.Node.Nodes.Count > 0)
-                e.Appearance.FontStyleDelta = FontStyle.Bold;
-        }
-
         private void GetChildNode(TreeListNode ChildNode, Category category)
         {
+            //Alt Kategorileri kayıt ediyor.
             using (DatabaseContext db = new DatabaseContext())
             {
                 foreach (TreeListNode item2 in ChildNode.Nodes)
@@ -209,6 +167,51 @@ namespace DevexpressTreeListExample
                     }
                 }
             }
+        }
+
+        private void btnListRefresh_Click(object sender, EventArgs e)
+        {
+            treeListFill();
+            lookUpEditUserType.EditValue = null;
+        }
+
+        private void lookUpEditUserType_EditValueChanged(object sender, EventArgs e)
+        {
+            treeList1Fill(Convert.ToInt32(lookUpEditUserType.EditValue));
+            int _id = Convert.ToInt32(lookUpEditUserType.EditValue);
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                if (Convert.ToInt32(lookUpEditUserType.EditValue) > 0)
+                {
+                    string _userTypeName = context.UserTypes.FirstOrDefault(x => x.Id == _id).UserTypeName;
+                    groupControl3.Text = "Kayıtlı Kategori Listesi (Tree List)" + " / " + _userTypeName;
+                }
+                else
+                {
+                    groupControl3.Text = "Kayıtlı Kategori Listesi (Tree List)";
+                }
+            }
+        }
+
+        private void OnBeforeFocusNode(object sender, BeforeFocusNodeEventArgs e)
+        {
+            e.CanFocus = false;
+        }
+
+        private void OnNodeCellStyle(object sender, GetCustomNodeCellStyleEventArgs e)
+        {
+            //Ana Kategorileri Bold olarak fontu düzenliyor.
+            if (e.Node.Level == 0)
+            {
+                if (fontSizeDeltaControl == 0)
+                {
+                    e.Appearance.FontSizeDelta += 1;
+                    fontSizeDeltaControl++;
+                }
+                e.Appearance.FontStyleDelta = FontStyle.Bold;
+            }
+            if (e.Node.Level == 1 && e.Node.Nodes.Count > 0)
+                e.Appearance.FontStyleDelta = FontStyle.Bold;
         }
 
         #endregion Crud Operations
