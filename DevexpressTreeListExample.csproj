@@ -76,7 +76,7 @@
       <DependentUpon>202005301600069_Bismillah.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ApplicationCategoryDto.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryUserType.cs" />
     <Compile Include="Models\ComboboxViewModel.cs" />

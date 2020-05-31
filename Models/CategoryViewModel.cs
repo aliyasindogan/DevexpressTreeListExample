@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevexpressTreeListExample.Models
 {
-    public class ApplicationCategoryDto
+    public class  CategoryViewModel
     {
         public int Id { get; set; }
         public int? SubCategoryID { get; set; }
