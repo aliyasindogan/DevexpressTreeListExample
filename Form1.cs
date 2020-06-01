@@ -178,18 +178,13 @@ namespace DevexpressTreeListExample
         private void lookUpEditUserType_EditValueChanged(object sender, EventArgs e)
         {
             treeList1Fill(Convert.ToInt32(lookUpEditUserType.EditValue));
-            int _id = Convert.ToInt32(lookUpEditUserType.EditValue);
-            using (DatabaseContext context = new DatabaseContext())
+            if (Convert.ToInt32(lookUpEditUserType.EditValue) > 0)
             {
-                if (Convert.ToInt32(lookUpEditUserType.EditValue) > 0)
-                {
-                    string _userTypeName = context.UserTypes.FirstOrDefault(x => x.Id == _id).UserTypeName;
-                    groupControl3.Text = "Kayıtlı Kategori Listesi (Tree List)" + " / " + _userTypeName;
-                }
-                else
-                {
-                    groupControl3.Text = "Kayıtlı Kategori Listesi (Tree List)";
-                }
+                groupControl3.Text = "Kayıtlı Kategori Listesi (Tree List)" + " / " + lookUpEditUserType.Text;
+            }
+            else
+            {
+                groupControl3.Text = "Kayıtlı Kategori Listesi (Tree List)";
             }
         }
 
